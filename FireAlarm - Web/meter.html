@@ -1,0 +1,54 @@
+<html>
+<p align="center"><h1 style="font-size:30pt;"><i><span style="color:black;">Fire Alarm</i></h1>
+<body bgcolor="2ecc71"></body>
+<html>
+  <head>
+   <p align="center"><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Temp (°C)', 80],
+          ['Smoke', 55],
+          ['Signal', 1]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 70, redTo: 100,
+          yellowFrom:40, yellowTo: 70,
+          greenFrom:0, greenTo:40,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 10 + Math.round(50 * Math.random()));
+          chart.draw(data, options);
+        }, 7000);
+        setInterval(function() {
+          data.setValue(1, 1, 10 + Math.round(50 * Math.random()));
+          chart.draw(data, options);
+        }, 7000);
+        setInterval(function() {
+          data.setValue(2, 1, 10 + Math.round(50 * Math.random()));
+          chart.draw(data, options);
+        }, 7000);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 600px; height: 150px;"></div>
+    <input name="logout" type="submit" class="confirm" value="Logout" onclick="return confirm('คุณต้องการออกจากระบบ');" />
+	<input type="button" input name="back" type="submit" class="confirm" value="Back" onclick="window.location.href='Web-2.html'" value="Web-2.html">
+
+  </body>
+</html>
+
